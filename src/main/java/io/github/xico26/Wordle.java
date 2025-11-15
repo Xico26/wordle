@@ -71,7 +71,7 @@ public class Wordle {
                 for (int i = 0; i < 5; i++) {
                     if (this.word.charAt(i) == input.charAt(i)) {
                         rightPlace.add(input.charAt(i));
-                    } else if (hasChar(input.charAt(i)) && !rightPlace.contains(input.charAt(i))) {
+                    } else if (this.word.contains(input.charAt(i) + "") && !rightPlace.contains(input.charAt(i))) {
                         wrongPlace.add(input.charAt(i));
                     }
                 }
@@ -84,15 +84,6 @@ public class Wordle {
         }
 
         System.out.println("The word was " + this.word);
-    }
-
-    public boolean hasChar (char ch) {
-        for (int i = 0; i < this.word.length(); i++) {
-            if (this.word.charAt(i) == ch) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void printResult (String input, List<Character> rightPlace, List<Character> wrongPlace) {
