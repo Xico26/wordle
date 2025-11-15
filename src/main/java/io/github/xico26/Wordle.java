@@ -100,11 +100,11 @@ public class Wordle {
         sb.append("| ");
         for (int i = 0; i < input.length(); i++) {
             if (rightPlace.contains(input.charAt(i))) {
-                sb.append("\033[0;32m" + input.charAt(i));
+                sb.append("\033[0;32m").append(input.charAt(i));
             } else if (wrongPlace.contains(input.charAt(i))) {
-                sb.append("\033[1;33m" + input.charAt(i));
+                sb.append("\033[1;33m").append(input.charAt(i));
             } else {
-                sb.append("\033[0m" + input.charAt(i));
+                sb.append("\033[0m").append(input.charAt(i));
             }
             sb.append("\033[0m | ");
         }
