@@ -62,7 +62,11 @@ public class Wordle {
 
             if (input.equals(this.word)) {
                 hasGuessed = true;
-                System.out.println("WOO CONGRATS YOU GUESSED IT IN " + (numGuesses + 1) + " TRIES!!");
+                for (int i = 0; i < input.length(); i++) {
+                    rightPlace.add(input.charAt(i));
+                }
+                printResult(input, rightPlace, wrongPlace);
+                System.out.println("Congrats!! You guessed the word in " + (numGuesses + 1) + " tries.");
             } else {
                 for (int i = 0; i < 5; i++) {
                     if (this.word.charAt(i) == input.charAt(i)) {
@@ -82,17 +86,6 @@ public class Wordle {
         System.out.println("The word was " + this.word);
     }
 
-    public String printCharList (List<Character> charList) {
-        StringBuilder sb = new StringBuilder();
-
-        for (Character character : charList) {
-            sb.append(character);
-            sb.append(",");
-        }
-
-        return sb.toString();
-    }
-
     public boolean hasChar (char ch) {
         for (int i = 0; i < this.word.length(); i++) {
             if (this.word.charAt(i) == ch) {
@@ -104,6 +97,7 @@ public class Wordle {
 
     public void printResult (String input, List<Character> rightPlace, List<Character> wrongPlace) {
         StringBuilder sb = new StringBuilder();
+        sb.append("| ");
         for (int i = 0; i < input.length(); i++) {
             if (rightPlace.contains(input.charAt(i))) {
                 sb.append("\033[0;32m" + input.charAt(i));
@@ -112,10 +106,11 @@ public class Wordle {
             } else {
                 sb.append("\033[0m" + input.charAt(i));
             }
+            sb.append("\033[0m | ");
         }
 
         sb.append("\033[0m\n");
 
-        System.out.print(sb.toString());
+        System.out.print(sb);
     }
 }
